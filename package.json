@@ -1,0 +1,29 @@
+{
+  "name": "nav-kaualap",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.node.js",
+    "dev": "ts-node src/main.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }, 
+  "dependencies": {
+    "@types/request": "^2.48.13",
+    "axios": "^1.11.0",
+    "axios-cookiejar-support": "^6.0.4",
+    "cheerio": "^1.1.2",
+    "n8n-workflow": "^1.82.0",
+    "request": "^2.88.2",
+    "tough-cookie": "^5.1.2"
+  },
+  "n8n": {
+    "nodes": [
+      "dist/main.node.js", 
+      "kauCredentials.credentials.js"
+    ]
+  }
+}
