@@ -1,4 +1,4 @@
-# n8n node — KAÜ Ügyfélportál és Tárhely integráció 
+#🧑‍💻 n8n node — KAÜ Ügyfélportál és Tárhely integráció 
 
 A fájl egy n8n node-ot valósít meg („KAÜ Ügyfélportál és Tárhely”), amely a magyar NAV ügyfélportállal és az állami tárhely (tárhely.gov.hu) levelezési/tárhely felületével kommunikál. Támogatott fő műveletek:
 
@@ -18,7 +18,7 @@ A belépés (hitelesítés) a KAU/Tárhely/SAML folyamatokat kezeli (KAU 2FA/TOT
 
 
 
-# Hitelesítés / Credentials
+#🗝️ Hitelesítés / Credentials
 
 A node credentials-ként kauCredentials-t igényel. A kódban a következő mezőkre használja:
 
@@ -31,54 +31,7 @@ credentials.kauKey (KAU TOTP kulcs — Base32 formátumú)
 Ez azt jelenti: a node-hoz hozzá kell adni egy credential-t, amely tartalmazza a felhasználó NAV/KAU felhasználónevét, jelszavát és a KAU kulcsot (TOTP-hoz).
 
 
-# Főbb segédfüggvények (a kódban)
-
-A fájlban definiált fontosabb függvények (maga a node execute() belső és a fájl teteji helper-ek):
-
-base32Decode(input: string): Buffer
-Base32 dekódoló (KAU kulcs feldolgozásához).
-
-generateTOTP(secret: string, timeSlice?: number): string
-HMAC/TOTP generálás KAU 2FA-hoz.
-
-parseHtmlForm(html: string)
-HTML form mezők kinyerése (cheerio-val), a SAML/SRP átirányításokhoz.
-
-async function navLogin(client, link, username, password, kauKey?)
-Komplex beléptető folyamat a NAV ügyfélportálra (SAML, KAU login step). Kezeli a SAML átirányításokat, x/y mezőket, CSRF tokeneket, stb. Ha szükséges, KAU TOTP-t is generál.
-
-async function targhelyLogin(client)
-Belépés a Tárhely (tarhely.gov.hu) levelezés/tárhely felületre (SAML-átirányítás + KAU).
-
-const getCompanyOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>
-n8n „loadOptions” — listázza a használható cégprofilokat a felhasználó fiókjából (a UI-ban Cég választóhoz).
-
-const getMailboxOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>
-Load options a tárhely/postaláda kiválasztásához.
-
-const getMessageOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>
-Load options egy adott postaláda üzeneteihez.
-
-const getCompanyNameById, getCompanyDetailsById
-Kisméretű helper-ek a cég metaadatok visszanyeréséhez.
-
-const changeCompany
-Váltás a NAV profilok/cégprofilok között (ha több profilhoz van hozzáférés).
-
-const generateTb(client, companyId, startDate, endDate): Promise<string>
-Elindítja a TB (biztosítottak / TB adatok) lekérést, visszaad egy lekérdezés-azonosítót.
-
-const generateTbXlsx(client, lekerdezesId, companyName)
-Letölti XLSX-ként a TB adatsort, visszaadja binárisan (base64).
-
-const generateOrFindAdoszamla(client, companyId, startDate, endDate): Promise<string>
-Lekéri/előállítja az adószámla-eredményt (lekerdezesEredmenyId).
-
-const downloadPdf(...)
-PDF letöltés + base64 kódolás, visszaadás n8n binary mezőben.
-
-
-# Műveletek (a node menüjében)
+#🎛️ Műveletek (a node menüjében)
 
 A Művelet (operation) legördülőben a következők találhatók (value -> rövid leírás):
 
@@ -103,7 +56,7 @@ Tárhely üzenet (egyetlen levél) letöltése (paraméterek: mailboxId, uzenet_
 Beviteli mezők és viselkedés (UI)
 
 
-# A node properties-ei (a legfontosabbak):
+#📁 A node properties-ei (a legfontosabbak):
 
 Művelet (operation) — válaszd ki az egyik műveletet (felül).
 
@@ -124,7 +77,7 @@ A displayOptions-ok miatt mezők csak a releváns műveletek kiválasztásakor j
 Kimenetek / visszaadott formátumok
 
 
-# A node a n8n szabványos módon ad vissza:
+#🧾 A node a n8n szabványos módon ad vissza:
 
 Ha fájl letöltés történik (PDF / XLSX), akkor a válasz binary mezőben adja vissza a base64 kódolt fájlt:
 
@@ -144,38 +97,126 @@ Adatvédelmi / biztonsági figyelmeztetés: a kauKey 2FA kulcs érzékeny adat �
 
 A fájlnév-képzésnél a kód megtisztítja a fileName-t tiltott karakterektől.
 
- 
-# A node n8n környezetbe történő telepítéséhez: a projektet a JS kimenetet kell elhelyezni az n8n custom node mappájában / csomagként publikálni.
+👤 Szerző
 
-Használati példák (mik a tipikus beállítások)
+cityba – fejlesztő problémamegoldó
 
-Adószámla letöltés (PDF)
+Ha tetszett vagy hasznos volt, ⭐️-zd a repót!
 
-Operation: Adószámla Letöltés (adoszamla)
+📜 Licenc
 
-Válaszd ki a Cég-et (companyId), állítsd be Dátumtartomány kezdete / vége-t.
+Ez a projekt szigorúan nem kereskedelmi célokra használható. Tilos a kód eladása, módosítása, újrahasznosítása.
 
-Output: binary PDF (fileName: {cég}_{type}_{YYYYMMDD}.pdf).
+A kód forrása és működése kizárólag személyes, oktatási vagy demonstrációs célokra használható.
 
-TB adatok export (XLSX)
+Bármilyen más felhasználás vagy terjesztés kizárt, kivéve a szerző írásos engedélyét.
 
-Operation: TB Adat Letöltés (tbAdat)
+------------------------------------------------
 
-Add meg companyId, startDate, endDate (a kód intern módon az előző hónapot kezeli is).
+#🧑‍💻 n8n node — KAÜ Customer Portal and Storage Integration
 
-Output: binary XLSX (fileName pl. {Company}_biztositottak_{YYYYMMDD}.xlsx).
+The file implements an n8n node (“KAÜ Customer Portal and Storage”) that communicates with the Hungarian NAV customer portal and the state storage (tárhely.gov.hu) mail/storage interface. Main supported operations:
 
-Tárhely üzenet letöltés
+Download tax invoice in PDF
 
-Operation: Tárhely Üzenet Letöltés (targyuzenetletoltes)
+List company profiles (company list)
 
-Válassz Postaláda-t, majd Üzenet-et. Opcionálisan Tartóstárba helyez = true.
+Export TB data in XLSX format
 
-Output: PDF binárisan.
+Download company master data in PDF
 
- 
-getCompanyOptions, getMailboxOptions, getMessageOptions — n8n loadOptions-k.
+List storage (mailbox) emails
 
-generateTb, generateTbXlsx — TB lekérés + XLSX letöltés.
+Download storage message (PDF) + optionally “put into storage”
 
-generateOrFindAdoszamla, downloadPdf — adószámla generálás / letöltés.
+Login (authentication) handles KAU/Storage/SAML processes (KAU 2FA/TOTP, SAML redirects, etc.).
+
+#🗝️ Authentication / Credentials
+
+The node requires kauCredentials as credentials. In the code, use the following fields:
+
+credentials.username
+
+credentials.password
+
+credentials.kauKey (KAU TOTP key — Base32 format)
+
+This means: a credential must be added to the node, which contains the user's NAV/KAU username, password, and KAU key (for TOTP).
+
+#🎛️ Operations (in the node menu)
+
+The Operation drop-down contains the following (value -> short description):
+
+adosamla — Tax Invoice Download
+Download a company's tax invoice in PDF format. (Parameters: companyId, startDate, endDate — the code generates/finds a tax invoice result and downloads it in PDF.)
+
+companyList — List Company Profiles
+Get available company profiles (loadOptions supported).
+
+tbAdat — TB Data Download
+Export TB data (XLSX). (Parameters: companyId, startDate, endDate — the node generates and downloads the XLSX.)
+
+torzsAdat — Master Data Download
+Download company master data (PDF).
+
+targyleafek — List of Storage Letters
+List the letters of the selected storage/mailbox (parameter: mailboxId, days in the past).
+
+targyuzeneletoltes — Download Storage Message
+Download a storage message (single letter) (parameters: mailboxId, uzenet_szam, optionally moveToPermanent).
+
+Input fields and behavior (UI)
+
+#📁 Node properties (the most important):
+
+Operation (operation) — select one of the operations (top).
+
+Company (companyId) — loadOptions: getCompanyOptions — select from the company profiles.
+
+Mailbox (mailboxId) — loadOptions: getMailboxOptions — storage/mailboxes.
+
+Message (message_number) — loadOptions: getMessageOptions — for messages in a given mailbox.
+
+Date range (days) — number (e.g. how many days back to list messages) — default 60.
+
+Date range start / end — dateTime type (used for tax invoice/TB requests).
+
+Move to permanent storage (moveToPermanent) — boolean (storage when downloading messages).
+
+Due to displayOptions, fields are only displayed when relevant actions are selected.
+
+Outputs / returned formats
+
+#🧾 Node returns in the n8n standard way:
+
+If a file download occurs (PDF / XLSX), then the response returns the base64 encoded file in the binary field:
+
+binary.data contains the base64-encoded content, fileName, mimeType are also set.
+
+JSON part (json: {}) is empty, the main thing is the binary block.
+
+If only a list (e.g. list of hosting emails, company list): JSON is returned in array/object form.
+
+Error handling / edge-cases
+
+The code checks HTTP status codes in several places and throws an error (throw new Error('...')) if something is not 200.
+
+There are several redirects and timing attempts for the KAU / NAV SAML process — if KAU TOTP is incorrect or missing, the login may fail.
+
+Privacy/Security Warning: The kauKey 2FA key is sensitive data — never upload it to an open repo in its raw form.
+
+The code sanitizes the fileName from forbidden characters when generating the filename.
+
+👤 Author
+
+cityba – developer problem solver
+
+If you liked it or found it useful, please ⭐️ the repo!
+
+📜 License
+
+This project is strictly for non-commercial use. Selling, modifying, or reusing the code is prohibited.
+
+The source and functionality of the code are for personal, educational, or demonstration purposes only.
+
+Any other use or distribution is prohibited without the written permission of the author.
