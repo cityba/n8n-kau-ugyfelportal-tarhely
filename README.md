@@ -1,4 +1,4 @@
-#🧑‍💻 n8n node — KAÜ Ügyfélportál és Tárhely integráció 
+# 🧑‍💻 n8n node — KAÜ Ügyfélportál és Tárhely integráció 
 
 A fájl egy n8n node-ot valósít meg („KAÜ Ügyfélportál és Tárhely”), amely a magyar NAV ügyfélportállal és az állami tárhely (tárhely.gov.hu) levelezési/tárhely felületével kommunikál. Támogatott fő műveletek:
 
@@ -18,7 +18,7 @@ A belépés (hitelesítés) a KAU/Tárhely/SAML folyamatokat kezeli (KAU 2FA/TOT
 
 
 
-#🗝️ Hitelesítés / Credentials
+# 🗝️ Hitelesítés / Credentials
 
 A node credentials-ként kauCredentials-t igényel. A kódban a következő mezőkre használja:
 
@@ -31,7 +31,7 @@ credentials.kauKey (KAU TOTP kulcs — Base32 formátumú)
 Ez azt jelenti: a node-hoz hozzá kell adni egy credential-t, amely tartalmazza a felhasználó NAV/KAU felhasználónevét, jelszavát és a KAU kulcsot (TOTP-hoz).
 
 
-#🎛️ Műveletek (a node menüjében)
+# 🎛️ Műveletek (a node menüjében)
 
 A Művelet (operation) legördülőben a következők találhatók (value -> rövid leírás):
 
@@ -56,7 +56,7 @@ Tárhely üzenet (egyetlen levél) letöltése (paraméterek: mailboxId, uzenet_
 Beviteli mezők és viselkedés (UI)
 
 
-#📁 A node properties-ei (a legfontosabbak):
+# 📁 A node properties-ei (a legfontosabbak):
 
 Művelet (operation) — válaszd ki az egyik műveletet (felül).
 
@@ -77,7 +77,7 @@ A displayOptions-ok miatt mezők csak a releváns műveletek kiválasztásakor j
 Kimenetek / visszaadott formátumok
 
 
-#🧾 A node a n8n szabványos módon ad vissza:
+# 🧾 A node a n8n szabványos módon ad vissza:
 
 Ha fájl letöltés történik (PDF / XLSX), akkor a válasz binary mezőben adja vissza a base64 kódolt fájlt:
 
@@ -113,7 +113,7 @@ Bármilyen más felhasználás vagy terjesztés kizárt, kivéve a szerző írá
 
 ------------------------------------------------
 
-#🧑‍💻 n8n node — KAÜ Customer Portal and Storage Integration
+# 🧑‍💻 n8n node — KAÜ Customer Portal and Storage Integration
 
 The file implements an n8n node (“KAÜ Customer Portal and Storage”) that communicates with the Hungarian NAV customer portal and the state storage (tárhely.gov.hu) mail/storage interface. Main supported operations:
 
@@ -131,7 +131,7 @@ Download storage message (PDF) + optionally “put into storage”
 
 Login (authentication) handles KAU/Storage/SAML processes (KAU 2FA/TOTP, SAML redirects, etc.).
 
-#🗝️ Authentication / Credentials
+# 🗝️ Authentication / Credentials
 
 The node requires kauCredentials as credentials. In the code, use the following fields:
 
@@ -167,7 +167,7 @@ Download a storage message (single letter) (parameters: mailboxId, uzenet_szam, 
 
 Input fields and behavior (UI)
 
-#📁 Node properties (the most important):
+# 📁 Node properties (the most important):
 
 Operation (operation) — select one of the operations (top).
 
