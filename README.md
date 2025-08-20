@@ -57,40 +57,58 @@ Beviteli mezők és viselkedés (UI)
 
 # INPUT jsonok 
 
-1. Cégprofilok Listázása (ceglista)
+## 1. Cégprofilok Listázása (ceglista)
 json
 {
+
   "operation": "ceglista"
+  
 }
-2. Adószámla Letöltés (adoszamla)
+## 2. Adószámla Letöltés (adoszamla)
 json
 {
+
   "operation": "adoszamla",
+  
   "companyId": "12345",
+  
   "startDate": "2023-01-01T00:00:00.000Z",
+  
   "endDate": "2023-12-31T23:59:59.999Z"
+  
 }
-3. TB Adat Letöltés (tbAdat)
+## 3. TB Adat Letöltés (tbAdat)
 json
 {
+
   "operation": "tbAdat",
+  
   "companyId": "12345",
+  
   "startDate": "2023-01-01T00:00:00.000Z",
+  
   "endDate": "2023-12-31T23:59:59.999Z"
+  
 }
-4. Törzsadat Letöltés (torzsAdat)
+## 4. Törzsadat Letöltés (torzsAdat)
 json
 {
+
   "operation": "torzsAdat",
+  
   "companyId": "12345"
+  
 }
-5. Tárhely Levelek Lista (targylevelek)
+## 5. Tárhely Levelek Lista (targylevelek)
 json
 {
+
   "operation": "targylevelek",
+  
   "days": 60
+  
 }
-6. Tárhely Üzenet Letöltés (targyuzenetletoltes)
+## 6. Tárhely Üzenet Letöltés (targyuzenetletoltes)
 json
 {
   "operation": "targyuzenetletoltes",
@@ -98,25 +116,20 @@ json
   "uzenet_szam": "msg456",
   "moveToPermanent": true
 }
-Minta Input (JSON)
+## Minta Input (JSON)
 json
 {
-  "operation": "adoszamla",
-  "companyId": "98765",
-  "startDate": "2024-01-01T00:00:00.000Z",
-  "endDate": "2024-03-31T23:59:59.999Z",
-  "credentials": {
-    "kauCredentialsut": {
-      "username": "ceg_username",
-      "password": "titkos_jelszo",
-      "kauKey": "JBSWY3DPEHPK3PXP"
-    }
-  }
-}
-README Bővítés
-markdown
-## Használati útmutató
 
+  "operation": "adoszamla",
+  
+  "companyId": "98765",
+  
+  "startDate": "2024-01-01T00:00:00.000Z",
+  
+  "endDate": "2024-03-31T23:59:59.999Z",
+  
+}
+ 
 ### Előfeltételek
 - Érvényes KAÜ felhasználói fiók
 - TOTP kulcs a kétfaktoros hitelesítéshez
@@ -252,66 +265,84 @@ Input fields and behavior (UI)
 
 # INPUT jsons
 
-1. List Company Profiles (ceglista)
+## 1. List Company Profiles (ceglista)
 json
 {
-"operation": "ceglista"
-}
-2. Download Tax Invoice (adosamla)
-json
-{
-"operation": "adosamla",
-"companyId": "12345",
-"startDate": "2023-01-01T00:00:00.000Z",
-"endDate": "2023-12-31T23:59:59.999Z"
-}
-3. Download TB Data (tbAdat)
-json
-{
-"operation": "tbAdat",
-"companyId": "12345",
-"startDate": "2023-01-01T00:00:00.000Z",
-"endDate": "2023-12-31T23:59:59.999Z"
-}
-4. Master Data Download (torzsAdat)
-json
-{
-"operation": "torzsAdat",
-"companyId": "12345"
-}
-5. Storage Mail List (subjectmails)
-json
-{
-"operation": "subjectmails",
-"days": 60
-}
-6. Storage Message Download (subjectmaildownload)
-json
-{
-"operation": "subjectmaildownload",
-"mailboxId": "mailbox123",
-"message_number": "msg456",
-"moveToPermanent": true
-}
-Sample Input (JSON)
-json
-{
-"operation": "adoszamla",
-"companyId": "98765",
-"startDate": "2024-01-01T00:00:00.000Z",
-"endDate": "2024-03-31T23:59:59.999Z",
-"credentials": {
-"kauCredentialsut": {
-"username": "ceg_username",
-"password": "titos_peslszo",
-"kauKey": "JBSWY3DPEHPK3PXP"
-}
-}
-}
-README Extension
-markdown
-## User Guide
 
+"operation": "ceglista"
+
+}
+## 2. Download Tax Invoice (adosamla)
+json
+{
+
+"operation": "adosamla",
+
+"companyId": "12345",
+
+"startDate": "2023-01-01T00:00:00.000Z",
+
+"endDate": "2023-12-31T23:59:59.999Z"
+
+}
+## 3. Download TB Data (tbAdat)
+json
+{
+
+"operation": "tbAdat",
+
+"companyId": "12345",
+
+"startDate": "2023-01-01T00:00:00.000Z",
+
+"endDate": "2023-12-31T23:59:59.999Z"
+
+}
+## 4. Master Data Download (torzsAdat)
+json
+{
+
+"operation": "torzsAdat",
+
+"companyId": "12345"
+
+}
+## 5. Storage Mail List (subjectmails)
+json
+{
+
+"operation": "subjectmails",
+
+"days": 60
+
+}
+## 6. Storage Message Download (subjectmaildownload)
+json
+{
+
+"operation": "subjectmaildownload",
+
+"mailboxId": "mailbox123",
+
+"message_number": "msg456",
+
+"moveToPermanent": true
+
+}
+## Sample Input (JSON)
+json
+{
+
+"operation": "adoszamla",
+
+"companyId": "98765",
+
+"startDate": "2024-01-01T00:00:00.000Z",
+
+"endDate": "2024-03-31T23:59:59.999Z",
+
+}
+ 
 ### Prerequisites
 - Valid KAÜ user account
 - TOTP key for two-factor authentication
