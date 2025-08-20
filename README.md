@@ -55,6 +55,89 @@ Tárhely üzenet (egyetlen levél) letöltése (paraméterek: mailboxId, uzenet_
 
 Beviteli mezők és viselkedés (UI)
 
+# INPUT jsonok 
+
+1. Cégprofilok Listázása (ceglista)
+json
+{
+  "operation": "ceglista"
+}
+2. Adószámla Letöltés (adoszamla)
+json
+{
+  "operation": "adoszamla",
+  "companyId": "12345",
+  "startDate": "2023-01-01T00:00:00.000Z",
+  "endDate": "2023-12-31T23:59:59.999Z"
+}
+3. TB Adat Letöltés (tbAdat)
+json
+{
+  "operation": "tbAdat",
+  "companyId": "12345",
+  "startDate": "2023-01-01T00:00:00.000Z",
+  "endDate": "2023-12-31T23:59:59.999Z"
+}
+4. Törzsadat Letöltés (torzsAdat)
+json
+{
+  "operation": "torzsAdat",
+  "companyId": "12345"
+}
+5. Tárhely Levelek Lista (targylevelek)
+json
+{
+  "operation": "targylevelek",
+  "days": 60
+}
+6. Tárhely Üzenet Letöltés (targyuzenetletoltes)
+json
+{
+  "operation": "targyuzenetletoltes",
+  "mailboxId": "mailbox123",
+  "uzenet_szam": "msg456",
+  "moveToPermanent": true
+}
+Minta Input (JSON)
+json
+{
+  "operation": "adoszamla",
+  "companyId": "98765",
+  "startDate": "2024-01-01T00:00:00.000Z",
+  "endDate": "2024-03-31T23:59:59.999Z",
+  "credentials": {
+    "kauCredentialsut": {
+      "username": "ceg_username",
+      "password": "titkos_jelszo",
+      "kauKey": "JBSWY3DPEHPK3PXP"
+    }
+  }
+}
+README Bővítés
+markdown
+## Használati útmutató
+
+### Előfeltételek
+- Érvényes KAÜ felhasználói fiók
+- TOTP kulcs a kétfaktoros hitelesítéshez
+
+### Konfiguráció
+
+1. Adja meg a hitelesítési adatokat a "Credentials" részben
+2. Válassza ki a kívánt műveletet
+3. Töltse ki a művelethez szükséges paramétereket
+
+### Példa munkafolyamatok
+
+1. **Adószámla letöltése havonta**:
+   - Ütemezett trigger (minden hónap 1.)
+   - KAÜ Node: Adószámla Letöltés művelet
+   - Google Drive: Fájl mentése
+
+2. **Tárhely üzenetek monitorozása**:
+   - Ütemezett trigger (napi)
+   - KAÜ Node: Tárhely Levelek Lista
+   - Email: Értesítés új üzenetekről
 
 # 📁 A node properties-ei (a legfontosabbak):
 
@@ -166,6 +249,90 @@ targyuzeneletoltes — Download Storage Message
 Download a storage message (single letter) (parameters: mailboxId, uzenet_szam, optionally moveToPermanent).
 
 Input fields and behavior (UI)
+
+# INPUT jsons
+
+1. List Company Profiles (ceglista)
+json
+{
+"operation": "ceglista"
+}
+2. Download Tax Invoice (adosamla)
+json
+{
+"operation": "adosamla",
+"companyId": "12345",
+"startDate": "2023-01-01T00:00:00.000Z",
+"endDate": "2023-12-31T23:59:59.999Z"
+}
+3. Download TB Data (tbAdat)
+json
+{
+"operation": "tbAdat",
+"companyId": "12345",
+"startDate": "2023-01-01T00:00:00.000Z",
+"endDate": "2023-12-31T23:59:59.999Z"
+}
+4. Master Data Download (torzsAdat)
+json
+{
+"operation": "torzsAdat",
+"companyId": "12345"
+}
+5. Storage Mail List (subjectmails)
+json
+{
+"operation": "subjectmails",
+"days": 60
+}
+6. Storage Message Download (subjectmaildownload)
+json
+{
+"operation": "subjectmaildownload",
+"mailboxId": "mailbox123",
+"message_number": "msg456",
+"moveToPermanent": true
+}
+Sample Input (JSON)
+json
+{
+"operation": "adoszamla",
+"companyId": "98765",
+"startDate": "2024-01-01T00:00:00.000Z",
+"endDate": "2024-03-31T23:59:59.999Z",
+"credentials": {
+"kauCredentialsut": {
+"username": "ceg_username",
+"password": "titos_peslszo",
+"kauKey": "JBSWY3DPEHPK3PXP"
+}
+}
+}
+README Extension
+markdown
+## User Guide
+
+### Prerequisites
+- Valid KAÜ user account
+- TOTP key for two-factor authentication
+
+### Configuration
+
+1. Enter the authentication data in the "Credentials" section
+2. Select the desired action
+3. Fill in the parameters required for the action
+
+### Example workflows
+
+1. **Download tax invoice monthly**:
+- Scheduled trigger (every month 1.)
+- KAÜ Node: Tax Invoice Download Operation
+- Google Drive: Save File
+
+2. **Monitoring Storage Messages**:
+- Scheduled Trigger (Daily)
+- KAÜ Node: Storage Mail List
+- Email: Notification of New Messages
 
 # 📁 Node properties (the most important):
 
